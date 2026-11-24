@@ -451,7 +451,26 @@ const familia = [
         img:"img/regalos/sofi/casaca.jpg", tienda:"Falabella",
         link:"https://www.falabella.com.pe/falabella-pe/product/154582890/chaqueta-de-jeans-mujer-beige" },
     ]},
-  { id:"evelyn",  nombre:"Evelyn",  apellido:"Lapa",   color:"pino", foto:"img/familia/evelyn.png", pos:"50% 22%", zoom:1.25, regalos:[] },
+  { id:"evelyn",  nombre:"Evelyn",  apellido:"Lapa",   color:"pino", foto:"img/familia/evelyn.png", pos:"50% 22%", zoom:1.25,
+    regalos:[
+      { t:"Zapatillas deportivas New Athletic", d:"Talla 39, negras o blancas",
+        img:"img/regalos/evelyn/zapatillas.jpg",
+        links:[
+          { tienda:"Negras", link:"https://www.falabella.com.pe/falabella-pe/product/157021811/zapatilla-new-athletic-tennis-mastgrip-pro-041-0201-para-mujer" },
+          { tienda:"Blancas", link:"https://www.falabella.com.pe/falabella-pe/product/155271763/zapatilla-new-athletic-tennis-040-2601-para-mujer" },
+          { tienda:"Ver más", link:"https://www.falabella.com.pe/falabella-pe/brand/NEW%20ATHLETIC" },
+        ] },
+      { t:"Plancha de cabello de alta gama", d:"Referencia: BaBylissPRO Optima 3000",
+        img:"img/regalos/evelyn/plancha.jpg", tienda:"Falabella",
+        link:"https://www.falabella.com.pe/falabella-pe/product/114490676/Plancha-BaBylissPRO-Optima-3000" },
+      { t:"Jean", d:"Talla 32, negro",
+        img:"img/regalos/evelyn/jean.jpg", tienda:"Falabella",
+        link:"https://www.falabella.com.pe/falabella-pe/product/883821952/jeans-moda-bscjds818p-black-36-26-6" },
+      { t:"Celular Samsung Ultra", d:"Referencia: Galaxy S26 Ultra",
+        img:"img/regalos/evelyn/celular.jpg", tienda:"Falabella",
+        link:"https://www.falabella.com.pe/falabella-pe/product/159657111/samsung-galaxy-s26-ultra-256gb" },
+      { t:"Si no quieres ir a buscar su regalo", d:"S/ 1000 (¿será mucho pedir?)", icono:"dinero" },
+    ]},
   { id:"jhon",    nombre:"Jhon",    apellido:"Lapa",   color:"oro",  foto:"img/familia/jhon.png",   pos:"50% 22%", zoom:1.2,  regalos:[] },
   { id:"lolo",    nombre:"Lolo",    apellido:"",       color:"rojo",  foto:"img/familia/lolo.jpg",    pos:"55% 20%", zoom:1.15, regalos:[] },
 ];
@@ -463,6 +482,8 @@ const ICONO_TIENDA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
 const ICONO_CELULAR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>';
 
 const ICONO_ROPA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3l3 2 3-2 5 3-2 4-2-1v12H8V9l-2 1-2-4z"/></svg>';
+
+const ICONO_DINERO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg>';
 
 function avatarHTML(p){
   if(!p.foto){
@@ -506,7 +527,7 @@ function abrir(i){
         <li class="regalo">
           ${r.img
             ? `<span class="regalo__foto"><img src="${r.img}" alt="${r.t}" loading="lazy"></span>`
-            : (conTienda ? `<span class="regalo__foto regalo__foto--icono">${r.icono === "celular" ? ICONO_CELULAR : r.icono === "ropa" ? ICONO_ROPA : ICONO_REGALO}</span>` : `<span class="regalo__num">${k+1}</span>`)}
+            : (conTienda ? `<span class="regalo__foto regalo__foto--icono">${r.icono === "celular" ? ICONO_CELULAR : r.icono === "ropa" ? ICONO_ROPA : r.icono === "dinero" ? ICONO_DINERO : ICONO_REGALO}</span>` : `<span class="regalo__num">${k+1}</span>`)}
           <div class="regalo__txt"><strong>${r.t}</strong>${r.d?`<span>${r.d}</span>`:""}
             ${enlaces(r).length ? `<div class="regalo__pie">
               ${enlaces(r).map(e => `<a class="regalo__link" href="${e.link}" target="_blank" rel="noopener">${ICONO_TIENDA}${e.tienda || "Ver"}</a>`).join("")}
