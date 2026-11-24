@@ -155,9 +155,10 @@
   /* ---------- Lista (ventana) ---------- */
   dialog{
     border:0;padding:0;background:var(--blanco);color:var(--tinta);
-    width:100%;max-width:100%;max-height:90vh;margin:auto auto 0;
+    width:100%;max-width:100%;max-height:75vh;max-height:75dvh;margin:auto auto 0;
     border-radius:28px 28px 0 0;overflow:hidden;
   }
+  body:has(dialog[open]){overflow:hidden}
   dialog[open]{display:flex;flex-direction:column;animation:subir .28s cubic-bezier(.2,.8,.2,1)}
   dialog::backdrop{background:rgba(23,23,23,.55)}
   @keyframes subir{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
@@ -170,7 +171,8 @@
     background:var(--blanco);border:2px solid var(--tinta);display:grid;place-items:center
   }
   .cerrar svg{width:18px;height:18px}
-  .ventana__cuerpo{overflow:auto;padding:8px 20px 8px}
+  .ventana__cuerpo{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:8px 20px 8px}
+  .ventana__cabecera,.ventana__pie{flex:none}
   .regalos{list-style:none;display:grid;gap:10px;padding:12px 0}
   .regalo{display:flex;align-items:flex-start;gap:14px;border:2px solid var(--linea);border-radius:20px;padding:14px 16px}
   .regalo__foto{
@@ -199,7 +201,7 @@
   .vacio img{width:110px}
   .vacio strong{font-family:"Fraunces",serif;font-size:21px}
   .vacio span{color:var(--gris)}
-  .ventana__pie{display:flex;justify-content:space-between;gap:10px;padding:12px 20px 20px;border-top:2px solid var(--linea)}
+  .ventana__pie{display:flex;justify-content:space-between;gap:10px;padding:12px 20px calc(16px + env(safe-area-inset-bottom));border-top:2px solid var(--linea)}
   .nav{
     display:inline-flex;align-items:center;gap:8px;border:2px solid var(--tinta);border-radius:999px;
     padding:9px 16px;font-weight:800;font-size:15px;background:var(--blanco)
